@@ -1,0 +1,310 @@
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI',
+    Roboto, 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Shared layout ===== */
+.screen {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gradient-bg,
+.gradient-bg-layer {
+  background: linear-gradient(
+    135deg,
+    rgba(128, 0, 128, 0.85) 0%,
+    rgba(219, 39, 119, 0.75) 33%,
+    rgba(220, 38, 38, 0.65) 66%,
+    rgba(128, 0, 128, 0.85) 100%
+  );
+  position: absolute;
+  inset: 0;
+}
+
+.gradient-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ===== Tap-to-start ===== */
+.tap-content {
+  text-align: center;
+  z-index: 1;
+  animation: breathe 2s ease-in-out infinite;
+}
+
+.tap-heart {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 24px rgba(255, 105, 180, 0.8));
+}
+
+.tap-text {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ===== Splash Screen ===== */
+.splash-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.splash-screen.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.splash-screen.fade-out {
+  animation: fadeOut 1s ease-out forwards;
+}
+
+.splash-content {
+  text-align: center;
+  padding: 0 28px;
+  max-width: 520px;
+}
+
+.splash-first-line {
+  font-size: clamp(1.35rem, 5vw, 1.8rem);
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 0 18px rgba(255, 105, 180, 0.5);
+  margin-bottom: 24px;
+  min-height: 4em;
+  line-height: 1.45;
+  transition: opacity 0.5s ease-in;
+}
+
+.splash-second-line {
+  font-size: clamp(1.05rem, 4vw, 1.4rem);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 0 12px rgba(255, 105, 180, 0.35);
+  min-height: 2em;
+  line-height: 1.45;
+  transition: opacity 0.5s ease-in;
+}
+
+.cursor {
+  animation: blink 0.7s step-end infinite;
+  font-weight: 300;
+  opacity: 0.75;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ===== Main Content ===== */
+.main-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  animation: fadeIn 1s ease-in;
+}
+
+.particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 24px 16px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* Circular image frame */
+.image-circle {
+  width: clamp(200px, 62vw, 260px);
+  height: clamp(200px, 62vw, 260px);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 30px rgba(255, 105, 180, 0.55),
+    0 0 60px rgba(255, 105, 180, 0.2);
+  transition: opacity 0.5s ease;
+  flex-shrink: 0;
+  margin-bottom: 28px;
+}
+
+.image-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Romantic message */
+.message {
+  font-size: clamp(1rem, 4.2vw, 1.3rem);
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  padding: 0 12px;
+  text-shadow: 0 0 16px rgba(255, 105, 180, 0.5);
+  max-width: 420px;
+  line-height: 1.55;
+  transition: opacity 0.5s ease-in;
+}
+
+/* Footer */
+.footer {
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.footer-text {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-heart {
+  font-size: 0.7rem;
+}
+
+/* ===== Love Particles ===== */
+.particle-float {
+  position: absolute;
+  bottom: -30px;
+  pointer-events: none;
+  will-change: bottom, opacity;
+  animation: floatUp var(--float-duration) linear forwards;
+}
+
+.particle-emoji {
+  display: block;
+  opacity: 0;
+  animation: swayX var(--sway-duration) ease-in-out infinite alternate,
+    particleAppear 0.8s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: -30px;
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    bottom: calc(100% + 50px);
+    opacity: 0;
+  }
+}
+
+@keyframes swayX {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: var(--sway-amount);
+  }
+}
+
+@keyframes particleAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+}
+
+/* ===== Shared keyframes ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ===== Small screen tweaks ===== */
+@media (max-width: 380px) {
+  .splash-first-line {
+    min-height: 5em;
+  }
+  .image-circle {
+    margin-bottom: 18px;
+  }
+}
